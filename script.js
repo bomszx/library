@@ -5,12 +5,6 @@ let isRead = document.querySelector('#isRead');
 let submit = document.querySelector('.submit')
 let add = document.querySelector('#add');
 
-console.log(submit)
-
-submit.addEventListener('click', function(e) {
-    console.log(title.value)
-})
-
 let myLibrary = [
     {
         title: 'The Lord of the Rings: The Fellowship of the Ring',
@@ -24,6 +18,13 @@ let myLibrary = [
     }
 ]
 
-function addBookToLibrary() {
+submit.addEventListener('click', addBookToLibrary)
 
+
+
+function addBookToLibrary() {
+    console.log(title.value);
+    console.log(author.value)
+    console.log(pages.value)
+    console.log(isRead.value)
 }
