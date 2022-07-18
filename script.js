@@ -2,7 +2,7 @@ let title = document.querySelector('#title');
 let author = document.querySelector('#author');
 let pages = document.querySelector('#pages');
 let isRead = document.querySelector('#isRead');
-let submit = document.querySelector('.submit')
+let submit = document.querySelector('.submit');
 let add = document.querySelector('#add');
 
 // Btn Event Listener
@@ -36,7 +36,13 @@ function addBookToLibrary() {
     title = title.value
     author = author.value
     pages = pages.value
-    isRead = isRead.value
+
+
+    if(isRead.checked) {
+        isRead = isRead.value = 'yes'
+    } else {
+        isRead = isRead.value = 'no'
+    }
     
     const newBook = new Book(title, author, pages, isRead)
 
