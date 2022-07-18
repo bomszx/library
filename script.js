@@ -4,6 +4,7 @@ let pages = document.querySelector('#pages');
 let isRead = document.querySelector('#isRead');
 let submit = document.querySelector('.submit');
 let add = document.querySelector('#add');
+let container = document.querySelector('.book-container')
 
 // Btn Event Listener
 submit.addEventListener('click', addBookToLibrary)
@@ -25,6 +26,7 @@ let myLibrary = [
     }
 ]
 
+// Object Constructor
 function Book(title, author, pages, isRead) {
     this.title = title
     this.author = author
@@ -32,21 +34,21 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead
 }
 
+// Function to add book to the Library
 function addBookToLibrary() {
     title = title.value
     author = author.value
     pages = pages.value
 
-
-    if(isRead.checked) {
-        isRead = isRead.value = 'yes'
-    } else {
-        isRead = isRead.value = 'no'
-    }
-    
+    isRead.checked ? isRead = isRead.value = 'yes' : isRead = isRead.value = 'no'
     const newBook = new Book(title, author, pages, isRead)
-
     myLibrary.push(newBook);
-    console.log(title, myLibrary);
 }
 
+// Function to display books
+myLibrary.forEach(book => {
+    const card = document.createElement('div')
+    card.innerText = book.title
+
+    container.append(card)
+})
