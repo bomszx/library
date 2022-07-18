@@ -5,26 +5,42 @@ let isRead = document.querySelector('#isRead');
 let submit = document.querySelector('.submit')
 let add = document.querySelector('#add');
 
+// Btn Event Listener
+submit.addEventListener('click', addBookToLibrary)
+
+
+// Library Array
 let myLibrary = [
     {
         title: 'The Lord of the Rings: The Fellowship of the Ring',
         author: 'J.R.R Tolkien',
-        page: 423
+        pages: 423,
+        isRead: 'yes'
     },
     {
         title: 'The Lord of the Rings: The Two Towers',
         author: 'J.R.R Tolkien',
-        page: 352
+        pages: 352,
+        isRead: 'no'
     }
 ]
 
-submit.addEventListener('click', addBookToLibrary)
-
-
+function Book(title, author, pages, isRead) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.isRead = isRead
+}
 
 function addBookToLibrary() {
-    console.log(title.value);
-    console.log(author.value)
-    console.log(pages.value)
-    console.log(isRead.value)
+    title = title.value
+    author = author.value
+    pages = pages.value
+    isRead = isRead.value
+    
+    const newBook = new Book(title, author, pages, isRead)
+
+    myLibrary.push(newBook);
+    console.log(title, myLibrary);
 }
+
