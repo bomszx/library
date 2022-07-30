@@ -1,11 +1,8 @@
-// let title = document.querySelector('#title');
-// let author = document.querySelector('#author');
-// let pages = document.querySelector('#pages');
-let isRead = document.querySelector('#isRead');
 let submit = document.querySelector('.submit');
 let container = document.querySelector('.book-container')
 let form = document.querySelector('#form')
 let cards = document.querySelectorAll('.book-card')
+let isRead = document.querySelector('#isRead');
 
 // Btn Event Listener
 submit.addEventListener('click', addBookToLibrary)
@@ -30,6 +27,7 @@ function addBookToLibrary() {
     const title = (document.querySelector('#title')).value;
     const author = (document.querySelector('#author')).value;
     const pages  = (document.querySelector('#pages')).value;
+
     isRead.checked ? isRead = isRead.value = 'yes' : isRead = isRead.value = 'no';
     
     const newBook = new Book(title, author, pages, isRead);
