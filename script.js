@@ -5,11 +5,10 @@ let cards = document.querySelectorAll('.book-card')
 let isRead = document.querySelector('#isRead');
 
 // Btn Event Listener
-submit.addEventListener('click', addBookToLibrary)
+form.addEventListener('submit', addBookToLibrary)
 
 
 // Library Array
-
 let myLibrary = [];
 
 // Object Constructor
@@ -22,8 +21,8 @@ function Book(title, author, pages, isRead) {
 
 
 // Function to add book to the Library
-function addBookToLibrary() {
-    // e.preventDefault();
+function addBookToLibrary(e) {
+    e.preventDefault();
     const title = (document.querySelector('#title')).value;
     const author = (document.querySelector('#author')).value;
     const pages  = (document.querySelector('#pages')).value;
