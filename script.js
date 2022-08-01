@@ -3,10 +3,12 @@ let container = document.querySelector('.books-container')
 let form = document.querySelector('#form')
 let cards = document.querySelectorAll('.book-card')
 let isRead = document.querySelector('#isRead');
+let addBtn = document.querySelector('#add')
+let modal = document.querySelector('.modal')
 
 // Btn Event Listener
 form.addEventListener('submit', addBookToLibrary)
-
+addBtn.addEventListener('click', showModal)
 
 // Library Array
 let myLibrary = [
@@ -56,6 +58,17 @@ function addBookToLibrary(e) {
 function reset() {
     form.reset();
 }
+
+function showModal() {
+    modal.style.display = 'block'
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        console.log(event)
+      modal.style.display = 'none';
+    }
+  }
 
 // Function to display book
 function displayBooks() {
