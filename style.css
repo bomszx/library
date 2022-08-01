@@ -18,8 +18,35 @@ body {
     --font: 'Bitter', serif;
 }
 
+input::placeholder {
+    font-family: var(--font);
+    font-size: 1rem;
+    padding: .5rem;
+}
+
+form {
+    display: flex;
+    gap: 1rem;
+}
+
+input {
+    line-height: 3rem;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: var(--white);
+}
+
 .books-container {
     height: 85vh;
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .modal {
@@ -37,11 +64,23 @@ body {
   }
 
   .modal-content {
-    background-color: #fefefe;
+    font-family: var(--font);
+    background-color: var(--gray);
     margin: auto;
-    padding: 20px;
+    padding: 15px;
     border: 1px solid #888;
-    width: 30%;
+    border-radius: 5px;
+    height: 50%;
+    width: 20%;
+
+    display: grid;
+    align-items: start;
+  }
+
+  .isRead-container {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
   }
 
   #form {
@@ -71,3 +110,4 @@ body {
     border: none;
     outline: none;
   }
+
