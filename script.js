@@ -11,26 +11,7 @@ form.addEventListener('submit', addBookToLibrary)
 addBtn.addEventListener('click', showModal)
 
 // Library Array
-let myLibrary = [
-    {   
-        title: 'Test',
-        author: 'Test',
-        pages: 23,
-        isRead: 'no',
-    },
-    {   
-        title: 'Test2',
-        author: 'Test2',
-        pages: 23,
-        isRead: 'no',
-    },
-    {   
-        title: 'Test3',
-        author: 'Test3',
-        pages: 23,
-        isRead: 'no',
-    },
-];
+let myLibrary = [];
 
 // Object Constructor
 function Book(title, author, pages, isRead) {

@@ -1,3 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    background-color: var(--gray);
+}
+
+body {
+    height: 100vh;
+}
+
+:root {
+    --white: #fffbfb;
+    --gray: #f0eef1;
+    --font: 'Bitter', serif;
+}
+
+.books-container {
+    height: 85vh;
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -17,5 +41,33 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 30%;
+  }
+
+  #form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-title {
+    font-family: var(--font);
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: 1.5rem;
+    box-shadow: 5px .2px 7px  rgb(202, 202, 202);
+  }
+
+  .add-button {
+    background-color: var(--gray);
+    display: flex;
+    justify-content: center;
+    margin: 0rem;
+  }
+
+  #add {
+    padding: 1rem;
+    border: none;
+    outline: none;
   }
