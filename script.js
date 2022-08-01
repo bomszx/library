@@ -76,11 +76,21 @@ function displayBooks() {
     container.innerHTML = '';
 
     for(const book of myLibrary) {
-        const card = document.createElement('div');
-        card.classList.add('book-card')
+        const card = `<div class=book-card>
+                            <div class="card-info-wrapper">
+                                <h2>${book.title}</h2>
+                                <h3>${book.author}</h3>
+                                <h4>${book.pages}</h4>
+                                <p>Have you read this book? ${book.isRead}</p>
+                                <div class="button>
+                                    Remove
+                                </div>
+                            </div>
+                        </div>`
 
-        card.innerText = book.title;
-        container.append(card)
+        const element = document.createElement('div')
+        element.innerHTML = card;
+        container.append(element);
     }
 };
 displayBooks(myLibrary)
