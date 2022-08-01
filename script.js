@@ -59,6 +59,7 @@ function reset() {
 
 // Function to display book
 function displayBooks() {
+    // clears the div so we don't append the existing books again
     container.innerHTML = '';
 
     for(const book of myLibrary) {
