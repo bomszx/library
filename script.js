@@ -6,12 +6,19 @@ let isRead = document.querySelector('#isRead');
 let addBtn = document.querySelector('#add')
 let modal = document.querySelector('.modal')
 
-// Btn Event Listener
-form.addEventListener('submit', addBookToLibrary)
-addBtn.addEventListener('click', showModal)
-
 // Library Array
 let myLibrary = [];
+
+// Btn Event Listener
+form.addEventListener('submit', addBookToLibrary);
+addBtn.addEventListener('click', showModal);
+document.addEventListener('click', function(e) {
+    if(e.target.classList.contains('.btn')) {
+        console.log('putangina')
+    }
+})
+
+
 
 // Object Constructor
 function Book(title, author, pages, isRead) {
@@ -20,6 +27,37 @@ function Book(title, author, pages, isRead) {
     this.pages = pages
     this.isRead = isRead
 }
+
+// Function to display book
+function displayBooks() {
+    // clears the div so we don't append the existing books again
+    container.innerHTML = '';
+
+    myLibrary.forEach((book, i) => {
+        const card = document.createElement('div');
+        const title = document.createElement('p');
+        const author = document.createElement('p')
+        const pages = document.createElement('p')
+        const btn = document.createElement('button')
+
+        btn.classList.add('.btn');
+
+
+        card.dataset.index = i;
+        title.textContent = `${book.title}`
+        author.textContent = `${book.author}`
+        pages.textContent = `${book.pages}`
+        btn.textContent = 'Remove'
+
+        card.appendChild(title)
+        card.appendChild(author)
+        card.appendChild(pages)
+        card.appendChild(btn)
+
+        container.append(card)
+        console.log(i)
+    });
+};
 
 // Function to add book to the Library
 function addBookToLibrary(e) {
@@ -50,29 +88,21 @@ window.onclick = function(event) {
     }
   }
 
-// Function to display book
-function displayBooks() {
-    // clears the div so we don't append the existing books again
-    container.innerHTML = '';
-
-    myLibrary.forEach((book, i) => {
-        const card = `<div class="book-card" data-index=${i}>
-                        <div class="card-info-wrapper">
-                                <h2>${book.title}</h2>
-                                <h3>${book.author}</h3>
-                                <h4>${book.pages}</h4>
-                                <p>Have you read this book? ${book.isRead}</p>
-                                <div class="button">
-                                    <button class="button remove">Remove</button>
-                                </div>
-                            </div>
-                        </div>`
-
-        const element = document.createElement('div');
-        console.log(card);
-        element.innerHTML = card;
-        container.append(element);
-    });
-};
-
 displayBooks(myLibrary)
+
+        // const card = `<div class="book-card" data-index=${i}>
+        //                 <div class="card-info-wrapper">
+        //                         <h2>${book.title}</h2>
+        //                         <h3>${book.author}</h3>
+        //                         <h4>${book.pages}</h4>
+        //                         <p>Have you read this book? ${book.isRead}</p>
+        //                         <div class="button">
+        //                             <button class="remove button" id="remove">Remove</button>
+        //                         </div>
+        //                     </div>
+        //                 </div>`
+        // const element = document.createElement('div');
+        // console.log(i)
+        // element.innerHTML = card;
+        // container.append(element);
+
