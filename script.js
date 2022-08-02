@@ -46,7 +46,6 @@ function showModal() {
 
 window.onclick = function(event) {
     if (event.target == modal) {
-        console.log(event)
       modal.style.display = 'none';
     }
   }
@@ -56,22 +55,24 @@ function displayBooks() {
     // clears the div so we don't append the existing books again
     container.innerHTML = '';
 
-    for(const book of myLibrary) {
-        const card = `<div class=book-card>
-                            <div class="card-info-wrapper">
+    myLibrary.forEach((book, i) => {
+        const card = `<div class="book-card" data-index=${i}>
+                        <div class="card-info-wrapper">
                                 <h2>${book.title}</h2>
                                 <h3>${book.author}</h3>
                                 <h4>${book.pages}</h4>
                                 <p>Have you read this book? ${book.isRead}</p>
-                                <div class="button>
-                                    Remove
+                                <div class="button">
+                                    <button class="button remove">Remove</button>
                                 </div>
                             </div>
                         </div>`
 
-        const element = document.createElement('div')
+        const element = document.createElement('div');
+        console.log(card);
         element.innerHTML = card;
         container.append(element);
-    }
+    });
 };
+
 displayBooks(myLibrary)
