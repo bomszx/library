@@ -7,18 +7,26 @@ let addBtn = document.querySelector('#add')
 let modal = document.querySelector('.modal')
 
 // Library Array
-let myLibrary = [];
+let myLibrary = [
+    {
+        title: 'test1',
+        author: 'test1',
+        pages: 25,
+        isRead: 'no'
+    }
+];
 
 // Btn Event Listener
 form.addEventListener('submit', addBookToLibrary);
 addBtn.addEventListener('click', showModal);
+
+// Used event delegation to attach an event listener to our dynamically created element
 document.addEventListener('click', function(e) {
-    if(e.target.classList.contains('.btn')) {
-        console.log('putangina')
+    if(e.target.classList.contains('book-card')) {
+        // console.log(e.target.parentNode.parentNode.dataset.index);
+        console.log(e.target.dataset.index)
     }
-})
-
-
+});
 
 // Object Constructor
 function Book(title, author, pages, isRead) {
@@ -30,38 +38,31 @@ function Book(title, author, pages, isRead) {
 
 // Function to display book
 function displayBooks() {
-    // clears the div so we don't append the existing books again
+    // Clears the div so we don't append the existing books again
     container.innerHTML = '';
 
+
+    // Create Element for each book from our myLibrary Array
     myLibrary.forEach((book, i) => {
-        const card = document.createElement('div');
-        const title = document.createElement('p');
-        const author = document.createElement('p')
-        const pages = document.createElement('p')
-        const btn = document.createElement('button')
+        const card = `<div class="book-card" data-index=${i}>
+                        <h3>${book.title}
+                        <button class="btn">Remove</button>
+                        </div>`
+        const element = document.createElement('div');
+        element.innerHTML = card;
+        // Adding class to btn
+        // btn.classList.add('.btn');
 
-        btn.classList.add('.btn');
-
-
-        card.dataset.index = i;
-        title.textContent = `${book.title}`
-        author.textContent = `${book.author}`
-        pages.textContent = `${book.pages}`
-        btn.textContent = 'Remove'
-
-        card.appendChild(title)
-        card.appendChild(author)
-        card.appendChild(pages)
-        card.appendChild(btn)
-
-        container.append(card)
-        console.log(i)
+        // Append card to our book-container 'div'
+        container.append(element);
     });
 };
 
 // Function to add book to the Library
 function addBookToLibrary(e) {
     e.preventDefault();
+
+    // Declaring variables locally helped fixed the 'undefined' issue with globally declared variables
     const title = (document.querySelector('#title')).value;
     const author = (document.querySelector('#author')).value;
     const pages  = (document.querySelector('#pages')).value;
@@ -78,8 +79,9 @@ function reset() {
     form.reset();
 }
 
+// Shows modal when add book btn is pressed
 function showModal() {
-    modal.style.display = 'block'
+    modal.style.display = 'block';
 }
 
 window.onclick = function(event) {
@@ -88,21 +90,4 @@ window.onclick = function(event) {
     }
   }
 
-displayBooks(myLibrary)
-
-        // const card = `<div class="book-card" data-index=${i}>
-        //                 <div class="card-info-wrapper">
-        //                         <h2>${book.title}</h2>
-        //                         <h3>${book.author}</h3>
-        //                         <h4>${book.pages}</h4>
-        //                         <p>Have you read this book? ${book.isRead}</p>
-        //                         <div class="button">
-        //                             <button class="remove button" id="remove">Remove</button>
-        //                         </div>
-        //                     </div>
-        //                 </div>`
-        // const element = document.createElement('div');
-        // console.log(i)
-        // element.innerHTML = card;
-        // container.append(element);
-
+  displayBooks(myLibrary);

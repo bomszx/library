@@ -124,3 +124,8 @@ input[type="text"], [type="number"] {
     outline: none;
   }
 
+.book-card {
+  height: 100px;
+  width: 100px;
+  border: 1px solid red;
+}
