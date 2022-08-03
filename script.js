@@ -65,7 +65,8 @@ function displayBooks() {
     myLibrary.forEach((book, i) => {
         const card = `<div class="book-card" data-index=${i}>
                         <div class="book-info">
-                            <h3>${book.title}
+                            <h2>${book.title}</h2>
+                            <h4>${book.author}</h4>
                             <button class="btn">Remove</button>
                             </div>
                         </div>`

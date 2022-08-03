@@ -124,10 +124,13 @@ input[type="text"], [type="number"] {
     outline: none;
   }
 
-.book-card {
+.book-info {
+  display: flex;
+  flex-direction: column;
+  
   height: 100px;
   width: 100px;
-  border: 1px solid red;
+  border: 1px solid blue;
 }
 
 .books-container {
