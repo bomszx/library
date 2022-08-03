@@ -13,6 +13,18 @@ let myLibrary = [
         author: 'test1',
         pages: 25,
         isRead: 'no'
+    },
+    {
+        title: 'test2',
+        author: 'test2',
+        pages: 25,
+        isRead: 'no'
+    },
+    {
+        title: 'test3',
+        author: 'test3',
+        pages: 25,
+        isRead: 'no'
     }
 ];
 
@@ -20,13 +32,19 @@ let myLibrary = [
 form.addEventListener('submit', addBookToLibrary);
 addBtn.addEventListener('click', showModal);
 
-// Used event delegation to attach an event listener to our dynamically created element
-document.addEventListener('click', function(e) {
-    if(e.target.classList.contains('book-card')) {
-        // console.log(e.target.parentNode.parentNode.dataset.index);
-        console.log(e.target.dataset.index)
+// Used event delegation through class="book-card" to attach an event listener to our dynamically created element -- remove button
+container.addEventListener('click', function(e) {
+    if(e.target.classList.contains('btn')) {
+
+        //Find a way to get a cleaner code for this shit :))
+        let parent = e.target.parentNode.parentNode.parentNode;
+        console.log(parent.dataset.index)
     }
 });
+
+function removeBook(i) {
+    myLibrary.splice(i, 1)
+}
 
 // Object Constructor
 function Book(title, author, pages, isRead) {
@@ -45,8 +63,10 @@ function displayBooks() {
     // Create Element for each book from our myLibrary Array
     myLibrary.forEach((book, i) => {
         const card = `<div class="book-card" data-index=${i}>
-                        <h3>${book.title}
-                        <button class="btn">Remove</button>
+                        <div class="book-info">
+                            <h3>${book.title}
+                            <button class="btn">Remove</button>
+                            </div>
                         </div>`
         const element = document.createElement('div');
         element.innerHTML = card;
