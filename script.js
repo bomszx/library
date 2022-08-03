@@ -38,7 +38,8 @@ container.addEventListener('click', function(e) {
 
         //Find a way to get a cleaner code for this shit :))
         let parent = e.target.parentNode.parentNode.parentNode;
-        parent.remove()
+        removeBook(parent.index);
+        parent.remove();
         console.log(parent.dataset.index)
     }
 });
@@ -67,6 +68,7 @@ function displayBooks() {
                         <div class="book-info">
                             <h2>${book.title}</h2>
                             <h4>${book.author}</h4>
+                            <p>${book.pages}</p>
                             <button class="btn">Remove</button>
                             </div>
                         </div>`
