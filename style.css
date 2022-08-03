@@ -132,6 +132,8 @@ input[type="text"], [type="number"] {
 
 .books-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  grid-template-rows: repeat(30px, 1fr);
   justify-items: center;
 }

@@ -38,6 +38,7 @@ container.addEventListener('click', function(e) {
 
         //Find a way to get a cleaner code for this shit :))
         let parent = e.target.parentNode.parentNode.parentNode;
+        parent.remove()
         console.log(parent.dataset.index)
     }
 });
