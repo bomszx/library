@@ -9,21 +9,21 @@ let modal = document.querySelector('.modal')
 // Library Array
 let myLibrary = [
     {
-        title: 'test1',
-        author: 'test1',
-        pages: 25,
+        title: 'The Lord of the Rings: The Fellowship of the Ring',
+        author: 'J.R.R Tolkien',
+        pages: 325,
         isRead: 'no'
     },
     {
-        title: 'test2',
-        author: 'test2',
-        pages: 25,
+        title: 'Skyfall',
+        author: 'Bond, James Bond',
+        pages: 437,
         isRead: 'no'
     },
     {
-        title: 'test3',
-        author: 'test3',
-        pages: 25,
+        title: 'Abuga-buga, Abugabuga-buga! Buga-buga, gub gub',
+        author: 'Ben Ten',
+        pages: 2500,
         isRead: 'no'
     }
 ];
@@ -34,8 +34,7 @@ addBtn.addEventListener('click', showModal);
 
 // Used event delegation through class="book-card" to attach an event listener to our dynamically created element -- remove button
 container.addEventListener('click', function(e) {
-    if(e.target.classList.contains('btn')) {
-
+    if(e.target.classList.contains('remove')) {
         //Find a way to get a cleaner code for this shit :))
         let parent = e.target.parentNode.parentNode.parentNode;
         removeBook(parent.index);
@@ -68,9 +67,10 @@ function displayBooks() {
     myLibrary.forEach((book, i) => {
         const card = `<div class="book-card" data-index="${i}">
                         <div class="book-info">
-                            <h2>${book.title}</h2>
-                            <h4>${book.author}</h4>
-                            <p>${book.pages}</p>
+                            <p>"${book.title}"</p>
+                            <p>Author: ${book.author}</p>
+                            <p>Pages: ${book.pages}</p>
+                            <button class="isRead button">${book.isRead}</button>
                             <button class="remove button">Remove</button>
                             </div>
                         </div>`
@@ -95,11 +95,15 @@ function addBookToLibrary(e) {
 
     isRead.checked ? isRead = isRead.value = 'yes' : isRead = isRead.value = 'no';
     
-    const newBook = new Book(title, author, pages, isRead);
+    const newBook = new Book(title, author, pages, capitalizeFirstLetter(isRead));
     myLibrary.push(newBook);
     displayBooks(myLibrary);
     reset();
 }
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 function reset() {
     form.reset();

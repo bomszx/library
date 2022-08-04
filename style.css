@@ -10,9 +10,15 @@ main {
 
 body {
     height: 100vh;
+    background-color: var(--gray);
 }
 
-nav {background-color: red;}
+header {
+  background-color: var(--white);
+  position: relative;
+  z-index: 3;
+  box-shadow: 5px .2px 10px  rgb(202, 202, 202);
+}
 
 :root {
     --white: #fffbfb;
@@ -41,9 +47,17 @@ input {
 }
 
 input[type="text"], [type="number"] {
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: .5rem;
+    font-weight: 900;
 }
+
+.button {
+  padding: .5rem;
+  border: 1px;
+  outline: none;
+}
+
 
 .button:hover {
   background-color: var(--dark-gray);
@@ -110,7 +124,8 @@ input[type="text"], [type="number"] {
     align-items: center;
     gap: .5rem;
     padding: 1.5rem;
-    box-shadow: 5px .2px 7px  rgb(202, 202, 202);
+
+
   }
 
   .add-button {
@@ -127,7 +142,9 @@ input[type="text"], [type="number"] {
   }
   .button {
     font-size: 1rem;
-    font: var(--font);
+    font-family: var(--font);
+    font-weight: 500;
+    border-radius: 5px;
   }
 
 
@@ -141,18 +158,24 @@ input[type="text"], [type="number"] {
   .book-info {
     display: flex;
     flex-direction: column;
-    
-    height: 100px;
-    width: 100px;
-    border: 1px solid blue;
+    justify-content: space-between;
+
+    background-color: var(--white);
+    min-height: 250px;
+    border-radius: 9px;
+    padding: 1.5rem;
+
+    box-shadow: 3px 3px 9px  rgb(202, 202, 202);
   }
 
 .books-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
-  justify-content: center; /*center from vertical column*/
-  justify-items: center; 
 
-  grid-template-rows: repeat(30px, 1fr);
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  height: auto;
 
   }
+
