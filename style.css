@@ -12,6 +12,8 @@ body {
     height: 100vh;
 }
 
+nav {background-color: red;}
+
 :root {
     --white: #fffbfb;
     --gray: #f0eef1;
@@ -116,27 +118,41 @@ input[type="text"], [type="number"] {
     display: flex;
     justify-content: center;
     margin: 0rem;
+    padding: 3rem;
   }
+
+  input.submit {
+    font-size: 1rem;
+
+  }
+  .button {
+    font-size: 1rem;
+    font: var(--font);
+  }
+
 
   #add {
     padding: 1rem;
     border: none;
     outline: none;
+    border-radius: 3px;
   }
 
-.book-info {
-  display: flex;
-  flex-direction: column;
-  
-  height: 100px;
-  width: 100px;
-  border: 1px solid blue;
-}
+  .book-info {
+    display: flex;
+    flex-direction: column;
+    
+    height: 100px;
+    width: 100px;
+    border: 1px solid blue;
+  }
 
 .books-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  justify-content: center; /*center from vertical column*/
+  justify-items: center; 
 
   grid-template-rows: repeat(30px, 1fr);
-  justify-items: center;
-}
+
+  }

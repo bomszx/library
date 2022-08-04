@@ -40,9 +40,11 @@ container.addEventListener('click', function(e) {
         let parent = e.target.parentNode.parentNode.parentNode;
         removeBook(parent.index);
         parent.remove();
-        console.log(parent.dataset.index)
+        console.log(parent.dataset)
     }
 });
+
+
 
 function removeBook(i) {
     myLibrary.splice(i, 1)
@@ -64,12 +66,12 @@ function displayBooks() {
 
     // Create Element for each book from our myLibrary Array
     myLibrary.forEach((book, i) => {
-        const card = `<div class="book-card" data-index=${i}>
+        const card = `<div class="book-card" data-index="${i}">
                         <div class="book-info">
                             <h2>${book.title}</h2>
                             <h4>${book.author}</h4>
                             <p>${book.pages}</p>
-                            <button class="btn">Remove</button>
+                            <button class="remove button">Remove</button>
                             </div>
                         </div>`
         const element = document.createElement('div');
