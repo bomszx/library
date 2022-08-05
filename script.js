@@ -55,9 +55,9 @@ function showModal() {
 function toggle(i) {
     if(myLibrary[i].isRead == false) {
         myLibrary[i].isRead = true;
-    } else {
+    } else if(myLibrary[i].isRead == true) {
         myLibrary[i].isRead = false;
-    }
+    }     
 }
 
 // Function to add book to the Library
@@ -71,14 +71,12 @@ function addBookToLibrary(e) {
     let isRead = (document.querySelector('#isRead'))
 
     isRead.checked ? isRead = true : isRead = false;
-    
+   
     const newBook = new Book(title, author, pages, isRead);
-    console.log(newBook)
     myLibrary.push(newBook);
     displayBooks(myLibrary);
     reset();
     modal.style.display = 'none';
-    console.log(myLibrary)
 }
 
 // Function to display book
@@ -118,13 +116,17 @@ displayBooks(myLibrary);
 // Function to toggle isRead status, targeted the parentNode of the btn to get the index of the said element and created the logic to toggle its value
 container.addEventListener('click', function(e) {
     let index = e.target.parentNode.parentNode.dataset.index
+    toggle(index);
+// status and btn has to be inside the if clause otherwise it will return undefined
         if(e.target.classList.contains('isRead')) {
-            console.log(index)
-        } else {
-            return
-        }
+            let status = myLibrary[index].isRead;
+            e.target.innerText = status;
+            console.log(myLibrary[index].isRead);
+        } 
+        // else {
+        //     return
+        // }
     })
-
 
 // Used event delegation through class="book-card" to attach an event listener to our dynamically created element -- remove button
 document.addEventListener('click', function(e) {
