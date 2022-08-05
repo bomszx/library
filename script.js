@@ -8,12 +8,18 @@ let modal = document.querySelector('.modal')
 
 // Library Array
 let myLibrary = [
-
+    {
+        title: 'The Horus Heresy: Siege of Terra',
+        author: 'Chris Wraight',
+        pages: 400,
+        isRead: 'Not read'
+   
+    },
     {
         title: 'The Lord of the Rings: The Return of the King',
         author: 'J.R.R Tolkien',
         pages: 417,
-        isRead: false
+        isRead: 'Not read'
    
     }
 ];
@@ -53,11 +59,17 @@ function showModal() {
 }
 
 function toggle(i) {
-    if(myLibrary[i].isRead == false) {
-        myLibrary[i].isRead = true;
-    } else if(myLibrary[i].isRead == true) {
-        myLibrary[i].isRead = false;
-    }     
+    if(myLibrary[i].isRead == 'Not read') {
+        myLibrary[i].isRead = 'Read';
+    } else {
+        myLibrary[i].isRead = 'Not read';
+    }
+}
+
+function status(e) {
+    if(e.target && e.target.classList.contains('isRead') && e.target.innerText == 'true') {
+        console.log('Yes Man')
+    }
 }
 
 // Function to add book to the Library
@@ -70,7 +82,7 @@ function addBookToLibrary(e) {
     const pages  = (document.querySelector('#pages')).value;
     let isRead = (document.querySelector('#isRead'))
 
-    isRead.checked ? isRead = true : isRead = false;
+    isRead.checked ? isRead = 'Read' : isRead = 'Not read';
    
     const newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
@@ -88,18 +100,21 @@ function displayBooks() {
     myLibrary.forEach((book, i) => {
         const card = `<div class="book-card" data-index="${i}">
                         <div class="book-info">
-                            <p>"${book.title}"</p>
+                            <h3>"${book.title}"</h3>
                             <p>Author: ${book.author}</p>
                             <p>Pages: ${book.pages}</p>
                             <button class="isRead button">${book.isRead}</button>
                             <button class="remove button">Remove</button>
                             </div>
                         </div>`
+
+
         const element = document.createElement('div');
         element.innerHTML = card;
 
         // Append card to our book-container 'div'
         container.append(element);
+
     });
 };
 
@@ -111,21 +126,22 @@ window.onclick = function(event) {
 
 displayBooks(myLibrary);
 
-
-
 // Function to toggle isRead status, targeted the parentNode of the btn to get the index of the said element and created the logic to toggle its value
 container.addEventListener('click', function(e) {
     let index = e.target.parentNode.parentNode.dataset.index
-    toggle(index);
-// status and btn has to be inside the if clause otherwise it will return undefined
+    let btn = e.target;
+       // status and btn has to be inside the if clause otherwise it will return undefined
         if(e.target.classList.contains('isRead')) {
-            let status = myLibrary[index].isRead;
-            e.target.innerText = status;
-            console.log(myLibrary[index].isRead);
-        } 
-        // else {
-        //     return
-        // }
+            toggle(index);
+
+            let status = myLibrary[index].isRead;     
+            btn.innerText = status;
+            btn.classList.toggle('read')
+            // declaring this inside to immediately toggle isRead value on object
+            console.log(myLibrary)
+        } else {
+            return;
+        }
     })
 
 // Used event delegation through class="book-card" to attach an event listener to our dynamically created element -- remove button
@@ -136,6 +152,7 @@ document.addEventListener('click', function(e) {
         parent.remove();
         console.log(parent.dataset.index)
         e.stopPropagation();
+
     } 
 });
 
